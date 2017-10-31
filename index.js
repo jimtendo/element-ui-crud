@@ -1,16 +1,16 @@
-import ElCreate from './src/Create';
-import ElDelete from './src/Delete';
-import ElEdit from './src/Edit';
 import ElCrud from './src/ElCrud';
-import ElList from './src/List';
-import ElShow from './src/Show';
+import ElCrudCreate from './src/Create';
+import ElCrudDelete from './src/Delete';
+import ElCrudEdit from './src/Edit';
+import ElCrudList from './src/List';
+import ElCrudShow from './src/Show';
 
 export default ElCrud;
 
 export {
-  ElCreate,
-  ElDelete,
-  ElEdit,
-  ElList,
-  ElShow,
+  ElCrudCreate,
+  ElCrudDelete,
+  ElCrudEdit,
+  ElCrudList,
+  ElCrudShow,
 }
