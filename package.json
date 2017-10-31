@@ -1,0 +1,24 @@
+{
+  "name": "element-crud-ui",
+  "version": "0.0.1",
+  "description": "CRUD components for Element-UI V2 (Vue)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimtendo/element-ui-crud.git"
+  },
+  "keywords": [
+    "Element-UI",
+    "Vue",
+    "CRUD"
+  ],
+  "author": "James Augustus Zuccon Phd (zuccon@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimtendo/element-ui-crud/issues"
+  },
+  "homepage": "https://github.com/jimtendo/element-ui-crud#readme"
+}
