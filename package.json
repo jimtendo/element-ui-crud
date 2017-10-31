@@ -1,5 +1,5 @@
 {
-  "name": "element-crud-ui",
+  "name": "element-ui-crud",
   "version": "0.0.1",
   "description": "CRUD components for Element-UI V2 (Vue)",
   "main": "index.js",
