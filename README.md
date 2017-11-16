@@ -55,7 +55,7 @@ The primary component that provides full CRUD functionality.
                   :list="['id', 'name']"
                   :create="['name']"
                   :edit="['name']"
-                  :titles="{ 'id': 'ID', 'name': 'Name' }"
+                  :titles="{ 'id': 'ID', 'name': 'Name' }">
           <template slot="list" scope="scope">
               <el-button size="small" type="primary" v-on:click="alert(scope.row)" icon="information"></el-button>
           </template>
