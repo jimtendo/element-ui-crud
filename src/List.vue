@@ -104,10 +104,9 @@
           /**
             * Handle Sorting Change
             */
-          handleSortChange: function(column, prop, order) {
-            console.log(column);
-            console.log(prop);
-            console.log(order);
+          handleSortChange: function(column, columnName, direction) {
+            this.order = { 'column': column.prop, 'direction': column.order };
+            this.fetchData();
           },
           
           /**
