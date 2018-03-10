@@ -8,6 +8,8 @@ https://laravel.com/docs/5.5/controllers#resource-controllers
 
 However, it may be used in other HTTP applications if the same endpoints are implemented.
 
+A sample Laravel Trait that can be used is in the "laravel-trait" folder.
+
 
 ## Installation
 
