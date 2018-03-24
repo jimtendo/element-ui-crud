@@ -78,7 +78,7 @@
                         }
                         
                     }, error => {
-                        this.$notify.error( {title: 'Error', message: error.message });
+                        this.$notify.error( {title: 'Error', message: error.response.data.message });
                         this.loading = false;
                     });
                 } else {
