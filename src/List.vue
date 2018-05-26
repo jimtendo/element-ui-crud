@@ -34,7 +34,7 @@
         mixins: [ Helpers ],
         
         props: {
-          endpoint: String,
+          endpoint: [String, Function],
           primaryKey: { type: String, default: 'id' },
           columns: Array,
           titles: { type: Object, default: () => { return {}; } },
@@ -50,6 +50,7 @@
             loading: false,
             loadingText: 'Loading...',
             loadingClass: '',
+            orderMutable: null,
             rows: [],
             total: 0,
             activePage: 1,
@@ -58,6 +59,7 @@
         },
               
         created() {
+          this.orderMutable = this.order;
           this.fetchData();
         },
         
@@ -73,7 +75,7 @@
             // Compile parameters
             var params = { };
             if (this.order) {
-                params = Object.assign({}, params, {'order': this.order});
+                params = Object.assign({}, params, {'order': this.orderMutable});
             }
             
             if (this.pagination) {
@@ -85,13 +87,28 @@
             }
             
             var self = this;
-            this.$http.get(this.endpoint, { 'params': params }).then(function(response) {
-                self.total = response.data.total;
-                self.rows = response.data.rows;
-                self.loading = false;
-            }).catch(function(error) {
-                self.loadingText = error.response.data.message;
-            });
+            
+            var handleSuccess = function(response) {
+              self.total = response.data.total;
+              self.rows = response.data.rows;
+              self.loading = false;
+            }
+            
+            var handleError = function(error) {
+              console.log(error);
+              self.loadingText = error.data.message;
+            }
+            
+            // If endpoint is a string...
+            if (typeof this.endpoint === 'string') {
+              this.$http.get(this.endpoint, { 'params': params })
+                        .then(handleSuccess)
+                        .catch(handleError);
+            } else { // Otherwise it is a function...
+              this.endpoint(params, self)
+                  .then(handleSuccess)
+                  .catch(handleError);
+            }
           },
           
           /**
@@ -105,7 +122,7 @@
             * Handle Sorting Change
             */
           handleSortChange: function(column, columnName, direction) {
-            this.order = { 'column': column.prop, 'direction': column.order };
+            this.orderMutable = { 'column': column.prop, 'direction': column.order };
             this.fetchData();
           },
           

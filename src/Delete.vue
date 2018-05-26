@@ -14,7 +14,8 @@
     export default {
       
         props: {
-          endpoint: String,
+          endpoint: [String, Function],
+          entity: { type: Object, default: null },
           after: { type: Function, default: null },
         },
         
@@ -33,20 +34,33 @@
 
             this.loading = true;
             
+            // If endpoint is a string...
             var self = this;
-            this.$http.delete(this.endpoint).then(function(response) {
-              self.$notify.success( {title: 'Success', message: 'Item has been deleted.' });
-              self.loading = false;
-              
-              // Perform callback
-              if (self.after) {
-                  self.after();
-              }
-              
-            }).catch(function(error) {
-                self.$notify.error( {title: 'Error', message: error.response.data.message });
-                self.loading = false;
-            });
+            if (typeof this.endpoint === 'string') {
+              this.$http.delete(this.endpoint)
+                        .then(this.handleSuccess)
+                        .catch(this.handleError);
+            } else { // Otherwise it is a function
+              this.endpoint(this.entity, self)
+                  .then(this.handleSuccess)
+                  .catch(this.handleError);
+            }
+          },
+          
+          handleSuccess: function(response) {
+            this.$notify.success( {title: 'Success', message: 'Item has been deleted.' });
+            this.loading = false;
+            
+            // Perform callback
+            if (this.after) {
+                this.after();
+            }
+          },
+          
+          handleError: function(error) {
+            console.log(error);
+            this.$notify.error( {title: 'Error', message: error.response.data.message });
+            this.loading = false;
           },
         }
     }

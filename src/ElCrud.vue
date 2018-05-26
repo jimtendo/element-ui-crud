@@ -12,7 +12,7 @@
         
         <List ref="list"
               :primary-key="primaryKey"
-              :endpoint="endpoint"
+              :endpoint="getListEndpoint"
               :columns="list"
               :titles="titles"
               :params="params"
@@ -25,8 +25,8 @@
           </template>
           <template slot-scope="scope">
             <slot name="list" :row="scope.row"></slot>
-            <el-button v-if="edit.length" size="small" type="primary" v-on:click="setAction('edit', scope.row[primaryKey])" icon="el-icon-edit"></el-button>
-            <el-button v-if="showDelete" size="small" type="danger" v-on:click="setAction('delete', scope.row[primaryKey])" icon="el-icon-delete"></el-button>
+            <el-button v-if="edit.length" size="small" type="primary" v-on:click="setAction('edit', scope.row)" icon="el-icon-edit"></el-button>
+            <el-button v-if="showDelete" size="small" type="danger" v-on:click="setAction('delete', scope.row)" icon="el-icon-delete"></el-button>
           </template>
         </List>
         
@@ -77,7 +77,8 @@
         
         <el-dialog v-if="action === 'delete'" title="Confirm" :visible="action === 'delete'" :before-close="handleClose"
                   :width="deleteSize" :modal-append-to-body="modalAppendToBody">
-          <Delete :endpoint="endpoint+'/'+entityId"
+          <Delete :endpoint="getDeleteEndpoint"
+                  :entity="entity"
                   :after="closeAndRefreshList">
           </Delete>
         </el-dialog>
@@ -99,7 +100,9 @@
         mixins: [ Helpers ],
       
         props: {
-          endpoint: String,
+          endpoint: [String, Function],
+          listEndpoint: [String, Function],
+          deleteEndpoint: [String, Function],
           primaryKey: { type: String, default: 'id' },
           list: { type: Array, default: () => { return []; } },
           show: { type: Array, default: () => { return []; } },
@@ -125,15 +128,29 @@
         data () {
           return {
             action: '',
-            entityId: null,
+            entity: null,
+          }
+        },
+        
+        computed: {
+          getListEndpoint: function() {
+            return this.listEndpoint ? this.listEndpoint : this.endpoint;
+          },
+          
+          getDeleteEndpoint: function() {
+            return this.deleteEndpoint ? this.deleteEndpoint : this.endpoint+'/'+this.entityId;
+          },
+          
+          entityId: function() {
+            return this.entity[this.primaryKey];
           }
         },
         
         methods: {
           
-          setAction: function(action, id, after) {
+          setAction: function(action, entity) {
               this.action = action;
-              this.entityId = id;
+              this.entity = entity;
           },
           
           closeAndRefreshList: function() {

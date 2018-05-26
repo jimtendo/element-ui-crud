@@ -1,24 +1,82 @@
 {
-  "name": "element-ui-crud",
-  "version": "0.0.4",
-  "description": "CRUD components for Element-UI V2 (Vue)",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_args": [
+    [
+      "element-ui-crud@0.0.4",
+      "/home/jimtendo/Projects/Gigya/gigya.alzed.com.au"
+    ]
+  ],
+  "_from": "element-ui-crud@0.0.4",
+  "_id": "element-ui-crud@0.0.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/element-ui-crud",
+  "_nodeVersion": "6.11.4",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/element-ui-crud_0.0.4_1521885374967_0.6437301742311508"
   },
+  "_npmUser": {
+    "email": "zuccon@gmail.com",
+    "name": "jimtendo"
+  },
+  "_npmVersion": "3.5.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "element-ui-crud",
+    "raw": "element-ui-crud@0.0.4",
+    "rawSpec": "0.0.4",
+    "scope": null,
+    "spec": "0.0.4",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_shasum": "3956a75f1277d66c9872df7f0a33cef010d372a1",
+  "_shrinkwrap": null,
+  "_spec": "element-ui-crud@0.0.4",
+  "_where": "/home/jimtendo/Projects/Gigya/gigya.alzed.com.au",
+  "author": {
+    "name": "James Augustus Zuccon Phd",
+    "url": "zuccon@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jimtendo/element-ui-crud/issues"
+  },
+  "dependencies": {},
+  "description": "CRUD components for Element-UI V2 (Vue)",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "fileCount": 14,
+    "shasum": "3956a75f1277d66c9872df7f0a33cef010d372a1",
+    "tarball": "https://registry.npmjs.org/element-ui-crud/-/element-ui-crud-0.0.4.tgz",
+    "unpackedSize": 42788
+  },
+  "gitHead": "ab2f995093f2a562c404de43109bdadcc6e6ce0e",
+  "homepage": "https://github.com/jimtendo/element-ui-crud#readme",
+  "keywords": [
+    "CRUD",
+    "Element-UI",
+    "Vue"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "jimtendo",
+      "email": "zuccon@gmail.com"
+    }
+  ],
+  "name": "element-ui-crud",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jimtendo/element-ui-crud.git"
   },
-  "keywords": [
-    "Element-UI",
-    "Vue",
-    "CRUD"
-  ],
-  "author": "James Augustus Zuccon Phd (zuccon@gmail.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jimtendo/element-ui-crud/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/jimtendo/element-ui-crud#readme"
+  "version": "0.0.4"
 }
