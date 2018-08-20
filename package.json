@@ -3,9 +3,13 @@
     [
       "element-ui-crud@0.0.4",
       "/home/jimtendo/Projects/Gigya/gigya.alzed.com.au"
+    ],
+    [
+      "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+      "/home/jimtendo/Projects/Gigya/gigya-dev-suite"
     ]
   ],
-  "_from": "element-ui-crud@0.0.4",
+  "_from": "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
   "_id": "element-ui-crud@0.0.4",
   "_inCache": true,
   "_installable": true,
@@ -22,20 +26,31 @@
   "_npmVersion": "3.5.2",
   "_phantomChildren": {},
   "_requested": {
-    "name": "element-ui-crud",
-    "raw": "element-ui-crud@0.0.4",
-    "rawSpec": "0.0.4",
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/jimtendo/element-ui-crud/EndpointCallbacks/package.json",
+      "gitUrl": "git://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+      "httpsUrl": "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+      "shortcut": "github:jimtendo/element-ui-crud#EndpointCallbacks",
+      "ssh": "git@github.com:jimtendo/element-ui-crud.git#EndpointCallbacks",
+      "sshUrl": "git+ssh://git@github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+    "rawSpec": "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
     "scope": null,
-    "spec": "0.0.4",
-    "type": "version"
+    "spec": "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+    "type": "hosted"
   },
   "_requiredBy": [
-    "#DEV:/"
+    "#DEV:/",
+    "/"
   ],
-  "_shasum": "3956a75f1277d66c9872df7f0a33cef010d372a1",
+  "_resolved": "git+https://github.com/jimtendo/element-ui-crud.git#8845d3e71e1c51c87091aba2823733fce308214f",
+  "_shasum": "18fe4726c16769ed979e2c8ba586cd624f67c326",
   "_shrinkwrap": null,
-  "_spec": "element-ui-crud@0.0.4",
-  "_where": "/home/jimtendo/Projects/Gigya/gigya.alzed.com.au",
+  "_spec": "git+https://github.com/jimtendo/element-ui-crud.git#EndpointCallbacks",
+  "_where": "/home/jimtendo/Projects/Gigya/gigya-dev-suite",
   "author": {
     "name": "James Augustus Zuccon Phd",
     "url": "zuccon@gmail.com"

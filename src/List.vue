@@ -102,12 +102,12 @@
             // If endpoint is a string...
             if (typeof this.endpoint === 'string') {
               this.$http.get(this.endpoint, { 'params': params })
-                        .then(handleSuccess)
-                        .catch(handleError);
+                .then(handleSuccess)
+                .catch(handleError);
             } else { // Otherwise it is a function...
               this.endpoint(params, self)
-                  .then(handleSuccess)
-                  .catch(handleError);
+                .then(handleSuccess)
+                .catch(handleError);
             }
           },
           

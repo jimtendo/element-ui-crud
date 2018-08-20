@@ -42,7 +42,7 @@
         
         <el-dialog v-if="action === 'create'" title="Create" :visible="action === 'create'" :before-close="handleClose"
                    :width="createSize" :modal-append-to-body="modalAppendToBody">
-          <Create :endpoint="endpoint"
+          <Create :endpoint="getCreateEndpoint"
                   :columns="create"
                   :titles="titles"
                   :fields="fields"
@@ -58,9 +58,10 @@
         </el-dialog>
         
         <el-dialog v-if="action === 'edit'" title="Edit" :visible="action === 'edit'" :before-close="handleClose"
-                   :width="editSize"  :modal-append-to-body="modalAppendToBody">
+                   :width="editSize" :modal-append-to-body="modalAppendToBody">
           <Edit ref="edit"
-                :endpoint="endpoint+'/'+entityId"
+                :endpoint="getEditEndpoint"
+                :entity="entity"
                 :columns="edit"
                 :titles="titles"
                 :fields="fields"
@@ -102,6 +103,8 @@
         props: {
           endpoint: [String, Function],
           listEndpoint: [String, Function],
+          createEndpoint: [String, Function],
+          editEndpoint: [String, Function],
           deleteEndpoint: [String, Function],
           primaryKey: { type: String, default: 'id' },
           list: { type: Array, default: () => { return []; } },
@@ -135,6 +138,14 @@
         computed: {
           getListEndpoint: function() {
             return this.listEndpoint ? this.listEndpoint : this.endpoint;
+          },
+          
+          getCreateEndpoint: function() {
+            return this.createEndpoint ? this.createEndpoint : this.endpoint;
+          },
+          
+          getEditEndpoint: function() {
+            return this.editEndpoint ? this.editEndpoint : this.endpoint+'/'+this.entityId;
           },
           
           getDeleteEndpoint: function() {

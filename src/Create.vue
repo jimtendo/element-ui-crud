@@ -21,7 +21,7 @@
         components: { ElCrudField },
       
         props: {
-          endpoint: String, 
+          endpoint: [String, Function], 
           columns: Array,
           titles: { type: Object, default: () => { return {}; } },
           rules: { type: Object, default: () => { return {}; } },
@@ -49,13 +49,35 @@
           fetchData: function() {
             this.loading = true;
             
+            var self = this;
+            
+            var handleSuccess = function(response) {
+              self.entity = response;
+              self.loading = false;
+            }
+            
+            var handleError = function(error) {
+              console.log(error);
+              self.loadingText = error.data.message;
+            }
+            
+            // If endpoint is a string...
+            if (typeof this.endpoint === 'string') {
+              this.$http.get(this.endpoint+'/create').then(handleSuccess).catch(handleError);
+            } else { // Otherwise it is a function...
+              this.endpoint('fetch', self.entity, self).then(handleSuccess).catch(handleError);
+            }
+            
+            /*
+            this.loading = true;
+            
             this.$http.get(this.endpoint+'/create').then(response => {
                 this.entity = response.data.entity;
                 this.loading = false;
             }, response => {
                 this.$notify.error( {title: 'Error', message: response.data.message });
                 this.loading = false;
-            });
+            });*/
           },
           
           /**
@@ -65,6 +87,32 @@
             // Validate form
             this.$refs['form'].validate((valid) => {
                 if (valid) {
+                    var self = this;
+                    this.loading = true;
+                    
+                    var handleSuccess = function(response) {
+                        self.$notify.success( {title: 'Success', message: response.data.message });
+                        self.loading = false;
+                        
+                        // Perform callback
+                        if (self.after) {
+                            self.after(self.entity);
+                        }
+                    }
+                    
+                    var handleError = function(error) {
+                        self.$notify.error( {title: 'Error', message: error.response.data.message });
+                        self.loading = false;
+                    }
+                    
+                    // If endpoint is a string...
+                    if (typeof this.endpoint === 'string') {
+                      this.$http.post(this.endpoint, this.entity, { 'params': this.params }).then(handleSuccess).catch(handleError);
+                    } else { // Otherwise it is a function...
+                      this.endpoint('submit', self.entity, self).then(handleSuccess).catch(handleError);
+                    }
+                    
+                    /*
                     this.loading = true;
                     
                     this.$http.post(this.endpoint, this.entity, { 'params': this.params }).then(response => {
@@ -81,6 +129,7 @@
                         this.$notify.error( {title: 'Error', message: error.response.data.message });
                         this.loading = false;
                     });
+                    */
                 } else {
                   this.$notify.error( {title: 'Cannot submit', message: 'Form contains errors.' });
                   return false;
